@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @ssfamily.nombre %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @ssfamily.desc %>
+</p>
+
+<p>
+  <strong>Sfamily:</strong>
+  <%= @ssfamily.sfamily %>
+</p>
+
+<%= link_to 'Edit', edit_ssfamily_path(@ssfamily) %> |
+<%= link_to 'Back', ssfamilies_path %>

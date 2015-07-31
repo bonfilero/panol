@@ -1,0 +1,94 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @article.nombre %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @article.desc %>
+</p>
+
+<p>
+  <strong>Saldo:</strong>
+  <%= @article.saldo %>
+</p>
+
+<p>
+  <strong>Stockmin:</strong>
+  <%= @article.stockmin %>
+</p>
+
+<p>
+  <strong>Lotecompra:</strong>
+  <%= @article.lotecompra %>
+</p>
+
+<p>
+  <strong>Unidad:</strong>
+  <%= @article.unidad %>
+</p>
+
+<p>
+  <strong>Unidadcompra:</strong>
+  <%= @article.unidadcompra %>
+</p>
+
+<p>
+  <strong>Ucompraporudeuso:</strong>
+  <%= @article.ucompraporudeuso %>
+</p>
+
+<p>
+  <strong>Sfamily:</strong>
+  <%= @article.sfamily %>
+</p>
+
+<p>
+  <strong>Family:</strong>
+  <%= @article.family %>
+</p>
+
+<p>
+  <strong>Ssfamily:</strong>
+  <%= @article.ssfamily %>
+</p>
+
+<h3> Saldo </h3>
+<div>
+  <% arreglo=@article.balances.last(5)  %>
+  <% arreglo.reverse.each do |balance| %>
+    <div>
+      <%= balance.saldo %> -  <%=balance.updated_at%>
+    </div>
+  <%end%>
+</div>
+
+
+<h3> Entradas </h3>
+<div>
+  <% arreglo2 = @article.inputs.last(5) %>
+  <% arreglo2.reverse.each do |input| %>
+    <div>
+      <%= input.cantidad %> -  <%=input.updated_at%>
+    </div>
+  <%end%>
+</div>
+
+<h3> Salidas </h3>
+<div>
+  <% arreglo2 = @article.outputs.last(5) %>
+  <% arreglo2.reverse.each do |output| %>
+    <div>
+      <%= output.cantidad %> -  <%=output.updated_at%>
+    </div>
+  <%end%>
+</div>
+
+
+
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

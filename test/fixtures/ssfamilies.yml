@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  desc: MyText
+  sfamily_id: 
+
+two:
+  nombre: MyString
+  desc: MyText
+  sfamily_id: 

@@ -1,0 +1,30 @@
+<%= form_for(@input) do |f| %>
+
+  <% if @input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@input.errors.count, "error") %> prohibited this input from being saved:</h2>
+
+      <ul>
+      <% @input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad , :step => 'any' %>
+  </div>
+  <div class="field">
+    <label>Artículos</label>
+    <% @articles.each do |article| %>
+        <li>
+          <%= radio_button_tag "input[article_id]", article.id %> <%= article.nombre %>
+        </li>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

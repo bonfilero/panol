@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ssfamilies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Desc</th>
+      <th>Sfamily</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ssfamilies.each do |ssfamily| %>
+      <tr>
+        <td><%= ssfamily.nombre %></td>
+        <td><%= ssfamily.desc %></td>
+        <td><%= ssfamily.sfamily %></td>
+        <td><%= link_to 'Show', ssfamily %></td>
+        <td><%= link_to 'Edit', edit_ssfamily_path(ssfamily) %></td>
+        <td><%= link_to 'Destroy', ssfamily, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ssfamily', new_ssfamily_path %>
