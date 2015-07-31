@@ -37,6 +37,12 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+        if @article.saldo.present?
+          saldo = @article.saldo
+        else
+          saldo = 0
+        end
+        @article.balances.create(article_id:@article.id,saldo:saldo)
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }

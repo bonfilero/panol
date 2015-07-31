@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150729152736) do
+ActiveRecord::Schema.define(version: 20150731164823) do
+
+  create_table "article_has_buyorders", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "buyorder_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "article_has_buyorders", ["article_id"], name: "index_article_has_buyorders_on_article_id"
+  add_index "article_has_buyorders", ["buyorder_id"], name: "index_article_has_buyorders_on_buyorder_id"
 
   create_table "articles", force: :cascade do |t|
     t.string   "nombre"
     t.text     "desc"
-    t.integer  "stockmin"
+    t.decimal  "stockmin",         default: 0.0
     t.integer  "lotecompra"
     t.string   "unidad"
     t.string   "unidadcompra"
@@ -24,9 +34,10 @@ ActiveRecord::Schema.define(version: 20150729152736) do
     t.integer  "family_id"
     t.integer  "sfamily_id"
     t.integer  "ssfamily_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.decimal  "saldo",            default: 0.0
+    t.string   "state",            default: "incompleto"
   end
 
   add_index "articles", ["family_id"], name: "index_articles_on_family_id"
@@ -45,6 +56,11 @@ ActiveRecord::Schema.define(version: 20150729152736) do
   add_index "balances", ["article_id"], name: "index_balances_on_article_id"
   add_index "balances", ["input_id"], name: "index_balances_on_input_id"
   add_index "balances", ["output_id"], name: "index_balances_on_output_id"
+
+  create_table "buyorders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "families", force: :cascade do |t|
     t.string   "nombre"
