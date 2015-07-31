@@ -5,4 +5,5 @@ class Article < ActiveRecord::Base
   has_many :balances
   has_many :inputs
   has_many :outputs
+  has_many :buyorders, through :article_has_buyorder
 end
