@@ -1,6 +1,6 @@
 class BalancesController < ApplicationController
   before_action :set_balance, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /balances
   # GET /balances.json
   def index
@@ -25,9 +25,10 @@ class BalancesController < ApplicationController
   # POST /balances.json
   def create
     @balance = Balance.new(balance_params)
-
+    
     respond_to do |format|
       if @balance.save
+        @balance.article.faltar!
         format.html { redirect_to @balance, notice: 'Balance was successfully created.' }
         format.json { render :show, status: :created, location: @balance }
       else
@@ -60,8 +61,21 @@ class BalancesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+=begin  
+ def cambiarEstadoArticle
+    @article = Article.find(@balance.article_id)
+    if @balance.saldo < @article.stockmin && @article.state == 'stock'
+      @article.faltar!
+    end
+  end
+=end
+
   private
+  
+
+ 
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_balance
       @balance = Balance.find(params[:id])

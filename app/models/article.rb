@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   	state :stock
 	 	state :faltante
 		state :pedido
+		
 		event :faltar do
 			transitions from: :stock, to: :faltante
 		end

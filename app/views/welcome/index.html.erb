@@ -1,0 +1,36 @@
+<h1>Artículos y estados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Saldo</th>
+      <th>Stockmin</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.nombre %></td>
+        <% if article.balances.last.present? %>
+          <td><%= article.balances.last.saldo %></td>
+          <% else %>
+          <td> </td>
+          <%end%>
+        
+        
+        <td><%= article.stockmin %></td>
+        <td><%= article.state %></td>
+        
+        
+        
+
+        <td><%= link_to 'Show', article %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
