@@ -25,10 +25,9 @@ class BalancesController < ApplicationController
   # POST /balances.json
   def create
     @balance = Balance.new(balance_params)
-    
+
     respond_to do |format|
       if @balance.save
-        @balance.article.faltar!
         format.html { redirect_to @balance, notice: 'Balance was successfully created.' }
         format.json { render :show, status: :created, location: @balance }
       else

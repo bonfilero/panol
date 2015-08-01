@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20150731164823) do
     t.integer  "family_id"
     t.integer  "sfamily_id"
     t.integer  "ssfamily_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.decimal  "saldo",            default: 0.0
-    t.string   "state",            default: "incompleto"
+    t.string   "state",            default: "stock"
   end
 
   add_index "articles", ["family_id"], name: "index_articles_on_family_id"

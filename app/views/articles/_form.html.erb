@@ -51,6 +51,10 @@
     <%= f.label :family_id %><br>
     <%= f.text_field :family_id %>
   </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
   
   <div class="field">
     <%= f.select(:ssfamily_id, options_for_select([['mecanico',1],['electrico',2]]), {include_blank: true}) %>
