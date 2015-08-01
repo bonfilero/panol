@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Outputs</h1>
+<h1>Salidas</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Cantidad</th>
+      <th>Fecha / Hora</th>
       <th>Article</th>
+      <th>Cantidad</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +17,13 @@
       <%= link_to 'New Output', new_output_path %>
     </div>
 
-    <% @outputs.each do |output| %>
+    <% @outputs.reverse.each do |output| %>
       <tr>
-        <td><%= output.cantidad %></td>
+        <td><%= output.created_at %></td>
+        
         <td><%= output.article.nombre %></td>
+        <td><%= output.cantidad %></td>
+
         <td><%= link_to 'Show', output %></td>
         <td><%= link_to 'Edit', edit_output_path(output) %></td>
         <td><%= link_to 'Destroy', output, method: :delete, data: { confirm: 'Are you sure?' } %></td>

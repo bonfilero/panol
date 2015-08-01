@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
+  get '/entrada', to: 'inputs#new_input', as: "entrada"
+
+  get '/salida', to: 'outputs#new_output', as: "salida"
+
+  #get 'inputs/new_input' => 'inputs#new_input', as: new_input_input_path
+
   resources :inputs
 
   resources :outputs

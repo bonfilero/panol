@@ -1,0 +1,21 @@
+<%= form_for(@input) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad , :step => 'any' %>
+  </div>
+  
+  <div class="field">
+    <label>Artículo</label>
+  </div>
+  <div class="field">
+        <li>
+          <%= radio_button_tag "input[article_id]", @article.id, :checked => true %> <%= @article.nombre %>
+        </li>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

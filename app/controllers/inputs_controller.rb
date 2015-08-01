@@ -24,6 +24,13 @@ class InputsController < ApplicationController
   def edit
   end
 
+  def new_input
+    @article_id = params[:article_id]
+    @article = Article.find(@article_id)
+    @input = Input.new
+  end
+
+
   # POST /inputs
   # POST /inputs.json
   def create

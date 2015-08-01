@@ -20,6 +20,14 @@ class OutputsController < ApplicationController
     @articles = Article.all
   end
 
+  def new_output
+    @article_id = params[:article_id]
+    @article = Article.find(@article_id)
+    @output = Output.new
+  end
+
+
+
   # GET /outputs/1/edit
   def edit
   end

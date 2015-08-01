@@ -7,7 +7,7 @@
       <th>Saldo</th>
       <th>Stockmin</th>
       <th>Estado</th>
-      <th colspan="3"></th>
+      <th colspan='10'></th>
     </tr>
   </thead>
 
@@ -25,11 +25,11 @@
         <td><%= article.stockmin %></td>
         <td><%= article.state %></td>
         
-        
-        
-
         <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Ingresar', new_input_path %></td>
+
+        <td><%= link_to 'Entregar', salida_path(article_id:article.id) %></td>
+
+        <td><%= link_to 'Ingresar', entrada_path(article_id:article.id) %></td>
       </tr>
     <% end %>
   </tbody>
