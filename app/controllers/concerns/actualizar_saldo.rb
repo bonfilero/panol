@@ -24,7 +24,7 @@ module ActualizarSaldo
 		   	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut)
 	    end
 	    newbalance.save
-	    if @article.balances.last.saldo < @article.stockmin
+	    if @article.balances.last.saldo < @article.stockmin && @article.state == "stock"
 	    	@article.faltar!
 	    end
 	  end
