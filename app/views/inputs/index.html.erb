@@ -21,7 +21,12 @@
       <tr>
         <td><%= input.created_at %></td>
         <td><%= input.article.nombre %></td>
-        <td><%= input.cantidad %></td>
+        <td><%= input.cantidad.round(2) %></td>
+        <% if input.remito.present? %>
+            <td><%= input.remito %></td>
+            <% else %>
+          <td>     </td>
+          <%end%>
         <td><%= link_to 'Show', input %></td>
         <td><%= link_to 'Edit', edit_input_path(input) %></td>
         <td><%= link_to 'Destroy', input, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,4 +36,3 @@
 </table>
 
 <br>
-

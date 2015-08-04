@@ -12,6 +12,11 @@ class InputsController < ApplicationController
   # GET /inputs/1
   # GET /inputs/1.json
   def show
+    if @input.devolucion
+      @es_devolucion = "Devolución"
+    else
+      @es_devolucion = ["Remito: ",@input.remito].join
+    end
   end
 
   # GET /inputs/new
@@ -86,7 +91,7 @@ class InputsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def input_params
-      params.require(:input).permit(:cantidad, :article_id )
+      params.require(:input).permit(:cantidad, :article_id, :comment, :devolucion, :remito )
     end
 
     

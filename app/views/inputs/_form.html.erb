@@ -16,6 +16,24 @@
   <div class="field">
     <%= f.label :cantidad %><br>
     <%= f.number_field :cantidad , :step => 'any' %>
+  <div class="field">
+    <%= f.check_box :devolucion %> <%= f.label :devolucion %>
+  </div>
+  <div class="field">
+    <%= f.label "Remito" %><br>
+    <%= f.text_field :remito %>
+  </div>
+    
+
+
+  <div class="field">
+    <%= f.label "Comentarios" %><br>
+    <%= f.text_field :comment %>
+  </div>
+  
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

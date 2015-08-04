@@ -2,13 +2,20 @@
 
 <p>
   <strong>Cantidad:</strong>
-  <%= @input.cantidad %>
+  <%= @input.cantidad.round(2) %>
 </p>
 
 <p>
   <strong>Artículo:</strong>
   <%= link_to @input.article.nombre, @input.article %>
 </p>
+<p>
+	<strong>Comentario</strong>
+</p>
+<p>
+	<%= @input.comment %>
+</p>
+<p><%= @es_devolucion %></p>
 
 <%= link_to 'Edit', edit_input_path(@input) %> |
 <%= link_to 'Back', inputs_path %>

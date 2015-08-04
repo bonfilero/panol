@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731164823) do
+ActiveRecord::Schema.define(version: 20150804175815) do
 
   create_table "article_has_buyorders", force: :cascade do |t|
     t.integer  "article_id"
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20150731164823) do
     t.integer  "family_id"
     t.integer  "sfamily_id"
     t.integer  "ssfamily_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.decimal  "saldo",            default: 0.0
-    t.string   "state",            default: "stock"
+    t.string   "state",            default: "incompleto"
   end
 
   add_index "articles", ["family_id"], name: "index_articles_on_family_id"
@@ -72,8 +72,11 @@ ActiveRecord::Schema.define(version: 20150731164823) do
   create_table "inputs", force: :cascade do |t|
     t.decimal  "cantidad"
     t.integer  "article_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "remito"
+    t.boolean  "devolucion", default: false
+    t.string   "comment"
   end
 
   add_index "inputs", ["article_id"], name: "index_inputs_on_article_id"

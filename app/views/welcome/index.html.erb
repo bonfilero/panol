@@ -17,7 +17,7 @@
         <td><%= link_to article.nombre, article %></td>
         
         <% if article.balances.last.present? %>
-          <td><%= article.balances.last.saldo %></td>
+          <td><%= article.balances.last.saldo.round(2) %></td>
           <% else %>
           <td> </td>
           <%end%>
