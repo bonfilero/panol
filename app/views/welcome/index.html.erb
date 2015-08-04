@@ -15,6 +15,7 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= link_to article.nombre, article %></td>
+        
         <% if article.balances.last.present? %>
           <td><%= article.balances.last.saldo %></td>
           <% else %>
