@@ -14,7 +14,7 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><%= article.nombre %></td>
+        <td><%= link_to article.nombre, article %></td>
         <% if article.balances.last.present? %>
           <td><%= article.balances.last.saldo %></td>
           <% else %>
@@ -25,11 +25,9 @@
         <td><%= article.stockmin %></td>
         <td><%= article.state %></td>
         
-        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Entregar', new_article_output_path(article.id) %></td>
 
-        <td><%= link_to 'Entregar', salida_path(article_id:article.id) %></td>
-
-        <td><%= link_to 'Ingresar', entrada_path(article_id:article.id) %></td>
+        <td><%= link_to 'Ingresar', new_article_input_path(article.id) %></td>
       </tr>
     <% end %>
   </tbody>

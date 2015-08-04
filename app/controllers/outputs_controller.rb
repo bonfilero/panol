@@ -17,7 +17,7 @@ class OutputsController < ApplicationController
   # GET /outputs/new
   def new
     @output = Output.new
-    @articles = Article.all
+    @article = Article.find(params[:article_id])
   end
 
   def new_output
@@ -35,13 +35,14 @@ class OutputsController < ApplicationController
   # POST /outputs
   # POST /outputs.json
   def create
-    @output = Output.new(output_params)
+    @article = Article.find(params[:article_id])
+    @output = @article.outputs.new(output_params)
 
     respond_to do |format|
       if @output.save
-        format.html { redirect_to @output, notice: 'Output was successfully created.' }
+        format.html { redirect_to outputs_path, notice: 'Output was successfully created.' }
         format.json { render :show, status: :created, location: @output }
-        actualizar_saldo(output_params[:article_id],output_params[:cantidad],"output",@output.id)
+        actualizar_saldo(@article.id,output_params[:cantidad],"output",@output.id)
 
       else
         format.html { render :new }
@@ -53,6 +54,7 @@ class OutputsController < ApplicationController
   # PATCH/PUT /outputs/1
   # PATCH/PUT /outputs/1.json
   def update
+    raise to_yaml
     respond_to do |format|
       if @output.update(output_params)
         format.html { redirect_to @output, notice: 'Output was successfully updated.' }

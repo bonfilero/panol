@@ -1,4 +1,4 @@
-<%= form_for(@output) do |f| %>
+<%= form_for([@article,@output]) do |f| %>
   <% if @output.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@output.errors.count, "error") %> prohibited this output from being saved:</h2>
@@ -16,15 +16,6 @@
     <%= f.text_field :cantidad %>
   </div>
   
-
-  <div class="field">
-    <label>Artículos</label>
-    <% @articles.each do |article| %>
-        <li>
-          <%= radio_button_tag "output[article_id]", article.id %> <%= article.nombre %>
-        </li>
-    <% end %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>

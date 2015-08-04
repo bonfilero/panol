@@ -1,4 +1,5 @@
-<%= form_for(@input) do |f| %>
+<%= form_for([@article,@input]) do |f| %>
+  <h2>Artículo: <%= @article.nombre %></h2>
 
   <% if @input.errors.any? %>
     <div id="error_explanation">
@@ -15,15 +16,6 @@
   <div class="field">
     <%= f.label :cantidad %><br>
     <%= f.number_field :cantidad , :step => 'any' %>
-  </div>
-  <div class="field">
-    <label>Artículos</label>
-    <% @articles.each do |article| %>
-        <li>
-          <%= radio_button_tag "input[article_id]", article.id %> <%= article.nombre %>
-        </li>
-    <% end %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

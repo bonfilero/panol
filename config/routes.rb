@@ -4,19 +4,17 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  get '/entrada', to: 'inputs#new_input', as: "entrada"
+  
+  resources :articles do
+    resources :inputs, :outputs, only: [:new,:create,:show]
+  end
 
-  get '/salida', to: 'outputs#new_output', as: "salida"
+  resources :inputs#, only: [:index]
 
-  #get 'inputs/new_input' => 'inputs#new_input', as: new_input_input_path
-
-  resources :inputs
-
-  resources :outputs
+  resources :outputs#, only: [:index]
 
   resources :balances
 
-  resources :articles
 
   resources :ssfamilies
 

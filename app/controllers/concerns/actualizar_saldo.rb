@@ -24,8 +24,21 @@ module ActualizarSaldo
 		   	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut)
 	    end
 	    newbalance.save
-	    if @article.balances.last.saldo < @article.stockmin && @article.state == "stock"
+
+	    saldo_min = @article.stockmin
+	    estado = @article.state
+
+	    # si el saldo recién creado es menor que mín y estado es stock
+	    if saldo_nuevo < saldo_min && estado == "stock"
 	    	@article.faltar!
+	    
+	    #si el saldo recién creado es mayor que mín y estado es faltante
+	    elsif saldo_nuevo > saldo_min && estado == "faltante"
+	    	@article.devolver!
+
+	    #si el saldo recién creado es mayor que mín, es una entrada, y @input tiene como devolución: false => cambia estado stock
+
+	    		
 	    end
 	  end
 

@@ -17,36 +17,34 @@ class InputsController < ApplicationController
   # GET /inputs/new
   def new
     @input = Input.new
-    @articles = Article.all
+    @article = Article.find(params[:article_id])
   end
 
   # GET /inputs/1/edit
   def edit
-  end
-
-  def new_input
-    @article_id = params[:article_id]
-    @article = Article.find(@article_id)
-    @input = Input.new
+    @article = @input.article
   end
 
 
   # POST /inputs
   # POST /inputs.json
+  
+
   def create
-    @input = Input.new(input_params)
+    @article = Article.find(params[:article_id])
+
+    @input = @article.inputs.new(input_params)
 
     respond_to do |format|
       if @input.save
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
-        actualizar_saldo(input_params[:article_id],input_params[:cantidad],"input",@input.id)
-
-
-        
+        actualizar_saldo(@article.id,input_params[:cantidad],"input",@input.id)
+      
       else
         format.html { render :new }
         format.json { render json: @input.errors, status: :unprocessable_entity }
+
       end
     end
 
@@ -55,6 +53,8 @@ class InputsController < ApplicationController
   # PATCH/PUT /inputs/1
   # PATCH/PUT /inputs/1.json
   def update
+    raise to_yaml
+
     respond_to do |format|
       if @input.update(input_params)
         format.html { redirect_to @input, notice: 'Input was successfully updated.' }

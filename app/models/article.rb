@@ -25,6 +25,10 @@ class Article < ActiveRecord::Base
 		event :comprar do
 		  transitions from: :faltante, to: :pedido
 		end
+		event :devolver do
+			transitions from: :faltante, to: :stock
+			
+		end
 	end
 
 

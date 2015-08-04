@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Article:</strong>
-  <%= @output.article %>
+  <strong>Artículo: <%= link_to @output.article.nombre, @output.article %></strong>
+  
 </p>
 
 <%= link_to 'Edit', edit_output_path(@output) %> |
