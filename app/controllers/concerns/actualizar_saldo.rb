@@ -3,7 +3,6 @@ module ActualizarSaldo
 
 	def actualizar_saldo(articuloid,movement,inOrOut,idInOrOut)
 
-#poner acá como variale si es in o out , y con eso ver si suma o resta, y si es input u output lo que crea.
 
 	    @article = Article.find(articuloid)
 	    if @article.balances.last.present?
@@ -19,26 +18,31 @@ module ActualizarSaldo
 	    	saldo_nuevo = saldo_actual - movement
 		    newbalance=@article.balances.new(saldo:saldo_nuevo,output_id:idInOrOut)
 		    
-		else
-			saldo_nuevo = saldo_actual + movement
-		   	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut)
-	    end
+			else
+				saldo_nuevo = saldo_actual + movement
+			 	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut)
+		  end
 	    newbalance.save
 
 	    saldo_min = @article.stockmin
 	    estado = @article.state
 
+
 	    # si el saldo recién creado es menor que mín y estado es stock
 	    if saldo_nuevo < saldo_min && estado == "stock"
 	    	@article.faltar!
 	    
-	    #si el saldo recién creado es mayor que mín y estado es faltante
-	    elsif saldo_nuevo > saldo_min && estado == "faltante"
-	    	@article.devolver!
-
-	    #si el saldo recién creado es mayor que mín, es una entrada, y @input tiene como devolución: false => cambia estado stock
-
-	    		
+	    #si el saldo recién creado es mayor que mín
+	    elsif saldo_nuevo > saldo_min 
+	    	#si estado es faltante
+	    	if estado == "faltante"
+	    		@article.devolver!
+	    	#si estado es pedido
+	    	elsif estado == "pedido" 
+	    		if newbalance.input.present? && !newbalance.input.devolucion #es una entrada, y @input tiene como devolución: false => cambia estado a stock
+	    			@article.entrar!
+	    		end
+	    	end
 	    end
 	  end
 
