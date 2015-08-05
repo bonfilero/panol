@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :compras
 
+  resources :buyorders, controller: :compras
+
   resources :works
 
   resources :equipment
