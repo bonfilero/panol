@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :works
+
+  resources :equipment
+
+  resources :ssystems
+
+  resources :systems
+
   resources :workers
 
   get 'welcome/index'

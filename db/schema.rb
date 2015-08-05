@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805131356) do
+ActiveRecord::Schema.define(version: 20150805151844) do
 
   create_table "article_has_buyorders", force: :cascade do |t|
     t.integer  "article_id"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20150805131356) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "equipment", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "codigo"
+    t.integer  "ssystem_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "equipment", ["ssystem_id"], name: "index_equipment_on_ssystem_id"
+
   create_table "families", force: :cascade do |t|
     t.string   "nombre"
     t.text     "desc"
@@ -88,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150805131356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "worker_id"
+    t.string   "comment"
   end
 
   add_index "outputs", ["article_id"], name: "index_outputs_on_article_id"
@@ -115,10 +126,38 @@ ActiveRecord::Schema.define(version: 20150805131356) do
   add_index "ssfamilies", ["family_id"], name: "index_ssfamilies_on_family_id"
   add_index "ssfamilies", ["sfamily_id"], name: "index_ssfamilies_on_sfamily_id"
 
+  create_table "ssystems", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "system_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ssystems", ["system_id"], name: "index_ssystems_on_system_id"
+
+  create_table "systems", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "workers", primary_key: "legajo", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "works", force: :cascade do |t|
+    t.string   "desc"
+    t.decimal  "horas"
+    t.date     "fecha"
+    t.integer  "equipment_id"
+    t.integer  "worker_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "works", ["equipment_id"], name: "index_works_on_equipment_id"
+  add_index "works", ["worker_id"], name: "index_works_on_worker_id"
 
 end

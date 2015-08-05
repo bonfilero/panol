@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc: MyString
+  horas: 9.99
+  fecha: 2015-08-05
+  equipment_id: 
+  worker_id: 
+
+two:
+  desc: MyString
+  horas: 9.99
+  fecha: 2015-08-05
+  equipment_id: 
+  worker_id: 
