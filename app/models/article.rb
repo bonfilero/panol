@@ -13,23 +13,22 @@ class Article < ActiveRecord::Base
 
   aasm column: "state" do
   	state :stock
-	 	state :faltante
-		state :pedido
-		
-		event :faltar do
-			transitions from: :stock, to: :faltante
-		end
-		event :entrar do
-			transitions from: :pedido, to: :stock
-		end
-		event :comprar do
-		  transitions from: :faltante, to: :pedido
-		end
-		event :devolver do
-			transitions from: :faltante, to: :stock
-			
-		end
+	state :faltante
+	state :pedido
+	
+	event :faltar do
+		transitions from: :stock, to: :faltante
 	end
+	event :entrar do
+		transitions from: :pedido, to: :stock
+	end
+	event :comprar do
+	  transitions from: :faltante, to: :pedido
+	end
+	event :devolver do
+		transitions from: :faltante, to: :stock
+	end
+end
 
 
 

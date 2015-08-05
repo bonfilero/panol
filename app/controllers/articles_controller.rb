@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
         else
           saldo = 0
         end
-        @article.balances.create(article_id:@article.id,saldo:saldo)
+        @article.balances.create(article_id:@article.id,saldo:saldo,comment:"Carga inicial")
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }

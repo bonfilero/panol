@@ -5,23 +5,26 @@ module ActualizarSaldo
 
 
 	    @article = Article.find(articuloid)
+
 	    if @article.balances.last.present?
 	      saldo_actual = @article.balances.last.saldo
 	      
 	    else
-	      saldo_actual = 0
+	      raise
 	      
 	    end
 	    
 	    movement = movement.to_f	#paso la cantidad a número flotante
 	    if inOrOut == "output" 	#si es salida, lo convierto a negativo para restarlo del saldo.
 	    	saldo_nuevo = saldo_actual - movement
-		    newbalance=@article.balances.new(saldo:saldo_nuevo,output_id:idInOrOut)
+	    	output = Output.find(idInOrOut)
+		    newbalance=@article.balances.new(saldo:saldo_nuevo,output_id:idInOrOut,comment:output.comment)
 		    
 			else
 				saldo_nuevo = saldo_actual + movement
-			 	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut)
-		  end
+				input = Input.find(idInOrOut)
+			 	newbalance=@article.balances.new(saldo:saldo_nuevo,input_id:idInOrOut,comment:input.comment)
+		end
 	    newbalance.save
 
 	    saldo_min = @article.stockmin

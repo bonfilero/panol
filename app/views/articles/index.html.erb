@@ -26,7 +26,7 @@
         <td><%= article.nombre %></td>
         <td><%= article.desc %></td>
         <% if article.balances.last.present? %>
-          <td><%= article.balances.last.saldo %></td>
+          <td><%= article.balances.last.saldo.round(2) %></td>
           <% else %>
           <td> </td>
           <%end%>
