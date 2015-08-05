@@ -18,6 +18,24 @@ class OutputsController < ApplicationController
   def new
     @output = Output.new
     @article = Article.find(params[:article_id])
+    
+    equipments = Equipment.all
+    @opciones_equipo = Array.new
+    
+    equipments.each do |equipo|
+      arr = [equipo.nombre,equipo.id]
+      @opciones_equipo << arr
+    end
+
+    operarios = Worker.all
+    @opciones_operario = Array.new
+
+    operarios.each do |operario|
+      arr = [operario.nombre,operario.legajo]
+      @opciones_operario << arr      
+    end
+
+
   end
 
   def new_output
@@ -84,6 +102,6 @@ class OutputsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def output_params
-      params.require(:output).permit(:cantidad, :article_id)
+      params.require(:output).permit(:cantidad, :article_id, :worker_id, :equipment_id)
     end
 end

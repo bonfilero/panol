@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805151844) do
+ActiveRecord::Schema.define(version: 20150805154108) do
 
   create_table "article_has_buyorders", force: :cascade do |t|
     t.integer  "article_id"
@@ -95,13 +95,15 @@ ActiveRecord::Schema.define(version: 20150805151844) do
   create_table "outputs", force: :cascade do |t|
     t.decimal  "cantidad"
     t.integer  "article_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "worker_id"
     t.string   "comment"
+    t.integer  "equipment_id"
   end
 
   add_index "outputs", ["article_id"], name: "index_outputs_on_article_id"
+  add_index "outputs", ["equipment_id"], name: "index_outputs_on_equipment_id"
   add_index "outputs", ["worker_id"], name: "index_outputs_on_worker_id"
 
   create_table "sfamilies", force: :cascade do |t|

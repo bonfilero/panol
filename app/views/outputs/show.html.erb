@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Cantidad:</strong>
   <%= @output.cantidad %>
@@ -7,7 +6,18 @@
 
 <p>
   <strong>Artículo: <%= link_to @output.article.nombre, @output.article %></strong>
-  
+</p>
+<p>
+  <strong>Equipo: </strong><br>
+  <%if @output.equipment.present? %>
+  	<strong><%= @output.equipment.codigo %> - <%= @output.equipment.nombre %></strong>
+  <% end %>
+</p>
+<p>
+	<strong>Operario: </strong>
+	<%if @output.worker.present? %>
+  	<strong><%= @output.worker.nombre %></strong>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_output_path(@output) %> |
