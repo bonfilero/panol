@@ -31,9 +31,13 @@ module ActualizarSaldo
 	    estado = @article.state
 
 
-	    # si el saldo recién creado es menor que mín y estado es stock
-	    if saldo_nuevo < saldo_min && estado == "stock"
-	    	@article.faltar!
+	    # si el saldo recién creado es menor que mín
+	    if saldo_nuevo < saldo_min
+	    	if estado == "stock" # si el estado es stock, lo pasa a faltante
+	    		@article.faltar!
+	    	elsif estado == "pedido" && newbalance.input.present? && !newbalance.input.devolucion # si el estado es pedido y no es una devolución, pasa a faltante
+	    		@article.entrar_con_faltante!
+	    	end
 	    
 	    #si el saldo recién creado es mayor que mín
 	    elsif saldo_nuevo > saldo_min 

@@ -28,6 +28,9 @@ class Article < ActiveRecord::Base
 	event :devolver do
 		transitions from: :faltante, to: :stock
 	end
+	event :entrar_con_faltante do
+		transitions from: :pedido, to: :faltante		
+	end
 end
 
 
