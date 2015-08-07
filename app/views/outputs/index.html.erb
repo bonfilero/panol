@@ -13,10 +13,6 @@
   </thead>
 
   <tbody>
-    <div>
-      <%= link_to 'New Output', root_path %>
-    </div>
-
     <% @outputs.reverse.each do |output| %>
       <tr>
         <td><%= output.created_at %></td>

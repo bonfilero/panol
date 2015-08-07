@@ -40,7 +40,7 @@ module ActualizarSaldo
 	    	end
 	    
 	    #si el saldo recién creado es mayor que mín
-	    elsif saldo_nuevo > saldo_min 
+	    elsif saldo_nuevo >= saldo_min 
 	    	#si estado es faltante
 	    	if estado == "faltante"
 	    		@article.devolver!
