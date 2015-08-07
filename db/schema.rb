@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805154108) do
+ActiveRecord::Schema.define(version: 20150807172218) do
 
   create_table "article_has_buyorders", force: :cascade do |t|
     t.integer  "article_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150805154108) do
     t.datetime "updated_at",                     null: false
     t.decimal  "saldo",            default: 0.0
     t.string   "state"
+    t.integer  "ultimoped"
   end
 
   add_index "articles", ["family_id"], name: "index_articles_on_family_id"

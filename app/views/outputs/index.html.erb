@@ -20,6 +20,13 @@
         <td><%= output.article.nombre %></td>
         <td><%= output.cantidad %></td>
 
+        <% if output.worker.present? %>
+          <td><%= output.worker.nombre %></td>
+        <% else %>
+          <td></td>
+          <% end %>
+
+
         <td><%= link_to 'Show', output %></td>
         <td><%= link_to 'Edit', edit_output_path(output) %></td>
         <td><%= link_to 'Destroy', output, method: :delete, data: { confirm: 'Are you sure?' } %></td>

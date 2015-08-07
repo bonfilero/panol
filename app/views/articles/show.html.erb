@@ -9,6 +9,13 @@
   <strong>Desc:</strong>
   <%= @article.desc %>
 </p>
+<p>
+  <strong>Último pedido:</strong>
+  <% if @article.ultimoped.present? %>
+    <%= @article.ultimoped %>
+  <% end  %>
+
+</p>
 
 <p>
   <strong>Saldo:</strong>

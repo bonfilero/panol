@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'compras/index'
 
+  get 'pedidos' , to: 'pedidos#index'
+
   resources :compras
 
   resources :buyorders, controller: :compras

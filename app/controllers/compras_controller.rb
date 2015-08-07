@@ -23,7 +23,9 @@ class ComprasController < ApplicationController
 
   			ids.each do |article|
   				ArticleHasBuyorder.create(article_id:article,buyorder_id:@compra.id)
-  				Article.find(article).comprar!
+  				a=Article.find(article)
+          a.comprar!
+          a.update(ultimoped:a.article_has_buyorder.last.id)
   			end
 
 

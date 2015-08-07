@@ -1,0 +1,45 @@
+
+<h1>Artículos pendientes de compra</h1>
+<%     %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fecha pedido</th>
+      <th>id pedido</th>
+      <th>nombre pañol</th>
+
+      <th>desc compra</th>
+      <th>Stock</th>
+      <th>Stock ideal </th>
+      <th colspan="30"></th>
+    </tr>
+  </thead>
+  <tbody>
+		<% @articles.each do |article| %>
+			<tr>
+				<td>
+					<%= article.article_has_buyorder.last.created_at %>
+				</td>
+				<td>
+					<%= article.ultimoped %>
+				</td>
+				<td>
+					<%= article.nombre %>
+				</td>
+				<td>
+					<%= article.desc %>
+				</td>
+				<td>
+					<%= article.balances.last.saldo %>
+				</td>
+				<td>
+					<%= article.stockmin %>
+				</td>
+				
+			</tr>
+	
+	
+	</tbody>
+	
+<%  end    %>
