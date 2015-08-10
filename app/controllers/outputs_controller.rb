@@ -1,8 +1,6 @@
 class OutputsController < ApplicationController
   before_action :set_output, only: [:show, :edit, :update, :destroy]
 
-  include ActualizarSaldo
-
   # GET /outputs
   # GET /outputs.json
   def index
@@ -34,8 +32,6 @@ class OutputsController < ApplicationController
       arr = [operario.nombre,operario.legajo]
       @opciones_operario << arr      
     end
-
-
   end
 
   def new_output
@@ -60,7 +56,7 @@ class OutputsController < ApplicationController
       if @output.save
         format.html { redirect_to outputs_path, notice: 'Output was successfully created.' }
         format.json { render :show, status: :created, location: @output }
-        actualizar_saldo(@article.id,output_params[:cantidad],"output",@output.id)
+        @article.actualizar_saldo(output_params[:cantidad],"output",@output.id)
 
       else
         format.html { render :new }

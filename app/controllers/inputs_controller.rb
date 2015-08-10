@@ -1,8 +1,6 @@
 class InputsController < ApplicationController
   before_action :set_input, only: [:show, :edit, :update, :destroy]
 
-  include ActualizarSaldo
-
   # GET /inputs
   # GET /inputs.json
   def index
@@ -44,8 +42,8 @@ class InputsController < ApplicationController
       if @input.save
         format.html { redirect_to @input, notice: 'Input was successfully created.' }
         format.json { render :show, status: :created, location: @input }
-        actualizar_saldo(@article.id,input_params[:cantidad],"input",@input.id)
-      
+        @article.actualizar_saldo(input_params[:cantidad],"input",@input.id)
+        
       else
         format.html { render :new }
         format.json { render json: @input.errors, status: :unprocessable_entity }
