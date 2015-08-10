@@ -69,7 +69,7 @@
         <div>
           <% @balances.reverse.each do |balance| %>
             <div>
-              <%= balance.saldo.round(2) %> -  <%=balance.updated_at%>
+              <%= link_to balance.saldo.round(2), balance %> -  <%=balance.updated_at%>
             </div>
           <%end%>
         </div>
@@ -79,7 +79,7 @@
         <div>
           <% @inputs.reverse.each do |input| %>
             <div>
-              <%= input.cantidad.round(2) %> -  <%=input.updated_at%>
+              <%= link_to input.cantidad.round(2), input %> -  <%=input.updated_at%>
             </div>
           <% end %>
         </div>
@@ -89,12 +89,11 @@
         <div>
           <% @outputs.reverse.each do |output| %>
             <div>
-              <%= output.cantidad.round(2) %> -  <%=output.updated_at%>
+              <%= link_to output.cantidad.round(2), output %> -  <%=output.updated_at%>
             </div>
           <%end%>
         </div>
       </li>
     </ul>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

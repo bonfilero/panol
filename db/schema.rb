@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807184907) do
+ActiveRecord::Schema.define(version: 20150810181858) do
 
   create_table "article_has_buyorders", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "buyorder_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.decimal  "cantidad"
   end
 
   add_index "article_has_buyorders", ["article_id"], name: "index_article_has_buyorders_on_article_id"
@@ -39,6 +40,10 @@ ActiveRecord::Schema.define(version: 20150807184907) do
     t.decimal  "saldo",            default: 0.0
     t.string   "state"
     t.integer  "ultimoped"
+    t.string   "codigo"
+    t.decimal  "saldo_proy"
+    t.decimal  "precio"
+    t.string   "ubicacion"
   end
 
   add_index "articles", ["family_id"], name: "index_articles_on_family_id"
@@ -106,6 +111,15 @@ ActiveRecord::Schema.define(version: 20150807184907) do
   add_index "outputs", ["article_id"], name: "index_outputs_on_article_id"
   add_index "outputs", ["equipment_id"], name: "index_outputs_on_equipment_id"
   add_index "outputs", ["worker_id"], name: "index_outputs_on_worker_id"
+
+  create_table "prices", force: :cascade do |t|
+    t.string   "valor"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "prices", ["article_id"], name: "index_prices_on_article_id"
 
   create_table "sfamilies", force: :cascade do |t|
     t.string   "nombre"

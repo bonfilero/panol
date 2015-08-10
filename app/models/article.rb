@@ -9,6 +9,7 @@ class Article < ActiveRecord::Base
   has_many :outputs
   has_many :buyorders, through: :article_has_buyorder
   has_many :article_has_buyorder
+  has_many :prices
 
   
 
