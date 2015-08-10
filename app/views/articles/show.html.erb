@@ -1,98 +1,100 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @article.nombre %>
-</p>
+<ul class="no-list row">
+      <li class="col-md">
+            <h2>
+              <strong>Nombre:</strong>
+              <%= @article.nombre %>
+            </h2>
 
-<p>
-  <strong>Desc:</strong>
-  <%= @article.desc %>
-</p>
-<p>
-  <strong>Último pedido:</strong>
-  <% if @article.ultimoped.present? %>
-    <%= @article.ultimoped %>
-  <% end  %>
+          <p>
+            <strong>Desc:</strong>
+            <%= @article.desc %>
+          </p>
+          <p>
+            <strong>Último pedido:</strong>
+            <% if @article.ultimoped.present? %>
+              <%= @article.ultimoped %>
+            <% end  %>
 
-</p>
+          </p>
 
-<p>
-  <strong>Saldo:</strong>
-  <%= @article.saldo %>
-</p>
+          <p>
+            <strong>Saldo:</strong>
+            <%= @article.saldo.round(2) %>
+          </p>
 
-<p>
-  <strong>Stockmin:</strong>
-  <%= @article.stockmin %>
-</p>
+          <p>
+            <strong>Stockmin:</strong>
+            <%= @article.stockmin %>
+          </p>
 
-<p>
-  <strong>Lotecompra:</strong>
-  <%= @article.lotecompra %>
-</p>
+          <p>
+            <strong>Lotecompra:</strong>
+            <%= @article.lotecompra %>
+          </p>
 
-<p>
-  <strong>Unidad:</strong>
-  <%= @article.unidad %>
-</p>
+          <p>
+            <strong>Unidad:</strong>
+            <%= @article.unidad %>
+          </p>
 
-<p>
-  <strong>Unidadcompra:</strong>
-  <%= @article.unidadcompra %>
-</p>
+          <p>
+            <strong>Unidadcompra:</strong>
+            <%= @article.unidadcompra %>
+          </p>
 
-<p>
-  <strong>Ucompraporudeuso:</strong>
-  <%= @article.ucompraporudeuso %>
-</p>
+          <p>
+            <strong>Ucompraporudeuso:</strong>
+            <%= @article.ucompraporudeuso %>
+          </p>
 
-<p>
-  <strong>Sfamily:</strong>
-  <%= @article.sfamily %>
-</p>
+          <p>
+            <strong>Sfamily:</strong>
+            <%= @article.sfamily %>
+          </p>
 
-<p>
-  <strong>Family:</strong>
-  <%= @article.family %>
-</p>
+          <p>
+            <strong>Family:</strong>
+            <%= @article.family %>
+          </p>
 
-<p>
-  <strong>Ssfamily:</strong>
-  <%= @article.ssfamily %>
-</p>
-
-<h3> Saldo </h3>
-<div>
-  <% @balances.reverse.each do |balance| %>
-    <div>
-      <%= balance.saldo %> -  <%=balance.updated_at%>
-    </div>
-  <%end%>
-</div>
-
-
-<h3> Entradas </h3>
-<div>
-  <% @inputs.reverse.each do |input| %>
-    <div>
-      <%= input.cantidad %> -  <%=input.updated_at%>
-    </div>
-  <% end %>
-</div>
-
-<h3> Salidas </h3>
-<div>
-  <% @outputs.reverse.each do |output| %>
-    <div>
-      <%= output.cantidad %> -  <%=output.updated_at%>
-    </div>
-  <%end%>
-</div>
-
-
-
-
+          <p>
+            <strong>Ssfamily:</strong>
+            <%= @article.ssfamily %>
+          </p>
+      </li>
+      <li class="col-md">
+        <h3> Saldo </h3>
+        <div>
+          <% @balances.reverse.each do |balance| %>
+            <div>
+              <%= balance.saldo.round(2) %> -  <%=balance.updated_at%>
+            </div>
+          <%end%>
+        </div>
+      </li>
+      <li class="col-md">
+        <h3> Entradas </h3>
+        <div>
+          <% @inputs.reverse.each do |input| %>
+            <div>
+              <%= input.cantidad.round(2) %> -  <%=input.updated_at%>
+            </div>
+          <% end %>
+        </div>
+      </li>
+      <li class="col-md">
+        <h3> Salidas </h3>
+        <div>
+          <% @outputs.reverse.each do |output| %>
+            <div>
+              <%= output.cantidad.round(2) %> -  <%=output.updated_at%>
+            </div>
+          <%end%>
+        </div>
+      </li>
+    </ul>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

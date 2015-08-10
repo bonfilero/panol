@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'reportes/operario', to: 'reportes#por_operario'
   get 'reportes/equipo', to: 'reportes#por_equipo'
   get 'reportes/articulo', to: 'reportes#por_articulo'
-  get 'reportes/index', to: 'reportes#index'
+  get 'reportes', to: 'reportes#index'
 
 
 

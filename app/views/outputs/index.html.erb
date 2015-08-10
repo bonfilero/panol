@@ -17,8 +17,8 @@
       <tr>
         <td><%= output.created_at %></td>
         
-        <td><%= output.article.nombre %></td>
-        <td><%= output.cantidad %></td>
+        <td><%= link_to output.article.nombre, output.article %></td>
+        <td><%= output.cantidad.round(2) %></td>
 
         <% if output.worker.present? %>
           <td><%= output.worker.nombre %></td>

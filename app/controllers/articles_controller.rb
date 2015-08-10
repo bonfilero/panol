@@ -17,9 +17,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @inputs = @article.inputs.last(5)
-    @outputs = @article.outputs.last(5)
-    @balances = @article.balances.last(5)
+    @inputs = @article.inputs.last(50)
+    @outputs = @article.outputs.last(50)
+    @balances = @article.balances.last(50)
   end
 
   # GET /articles/new
