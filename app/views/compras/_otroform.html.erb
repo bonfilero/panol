@@ -1,58 +1,62 @@
 
 
-  <% if @compra.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@compra.errors.count, "error") %> prohibited this buyorder from being saved:</h2>
-
-      <ul>
+<% if @compra.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@compra.errors.count, "error") %> prohibited this buyorder from being saved:</h2>
+    <ul>
       <% @compra.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
+<% end %>
 
-    <% end %>
-
-    <%= form_tag do %>
-      <table>
-        <thead>
+<% if @faltantes.length > 0 %>
+  <h3>Artículos faltantes:</h3>
+  
+  <%= form_tag do %>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Lote de compra</th>
+          <th>Actualiza lote de compra</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <% @faltantes.each do |articulo| %>
+          <%= hidden_field_tag "articulos[]", articulo.id %>
           <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Lote de compra</th>
-            <th>Actualiza lote de compra</th>
+            <td><%= articulo.nombre %></td>
+            <td>
+              <% if articulo.desc.present? %>
+                <%= articulo.desc %>
+              <% end %>
+            </td>
+              <% if articulo.lotecompra.present? %>
+                <td>
+                  <%= number_field_tag "cantidad[]", value = articulo.lotecompra, :step => 'any' %>
+                </td>
+                <td>
+                  <%= check_box_tag "actualiza_lote_compra[]", articulo.id %>
+                </td>
+              <% else %>
+                <td>
+                  <%= number_field_tag "cantidad[]", nil, placeholder: 'Ingresar lote de compra' , :step => 'any', :min => '0.1' %>
+                </td>
+                <td>
+                  <%= check_box_tag "actualiza_lote_compra[]", articulo.id, checked = true %>
+                </td>
+              <% end %>
           </tr>
-        </thead>
-        
-        <tbody>
-          <% @faltantes.each do |articulo| %>
-            <%= hidden_field_tag "articulos[]", articulo %>
-            <tr>
-              <td><%= articulo.nombre %></td>
-              <td>
-                <% if articulo.desc.present? %>
-                  <%= articulo.desc %>
-                <% end %>
-              </td>
-                <% if articulo.lotecompra.present? %>
-                  <td>
-                    <%= number_field_tag "cantidad[]", value = articulo.lotecompra, :step => 'any' %>
-                  </td>
-                  <td>
-                    <%= check_box_tag "actualiza_lote_compra[]", articulo.id %>
-                  </td>
-                <% else %>
-                  <td>
-                    <%= number_field_tag "cantidad[]", nil, placeholder: 'Ingresar lote de compra' , :step => 'any', :min => '0.1' %>
-                  </td>
-                  <td>
-                    <%= check_box_tag "actualiza_lote_compra[]", articulo.id, checked = true %>
-                  </td>
-                <% end %>
-            </tr>
-          <% end %>
+        <% end %>
 
-        </tbody>
-      </table>
-      <%= submit_tag 'Enviar' %>
-    <% end %>
+      </tbody>
+    </table>
+    <%= submit_tag 'Enviar' %>
+  <% end %>
+<% else %>
+  <h3>Sin artículos faltantes</h3>
+<% end %>

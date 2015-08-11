@@ -30,10 +30,11 @@
     <%= f.label "Comentarios" %><br>
     <%= f.text_field :comment %>
   </div>
+  <div class="field">
+    <label>Orden de compra</label><br>
+    <%= select_tag "orden_compra[]", options_for_select(@ordenes.collect{ |u| [ ['id:',u.id,' - fecha:',u.created_at,' - cantidad: ',u.cantidad].join, u.id]}) , {include_blank: true, multiple: true} %>
+  </div>
   
-
-
-
   <div class="actions">
     <%= f.submit %>
   </div>

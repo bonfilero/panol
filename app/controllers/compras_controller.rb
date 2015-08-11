@@ -28,18 +28,20 @@ class ComprasController < ApplicationController
   		if @compra.save
 
         articles = params[:articulos]
+        cantidad = params[:cantidad]
+        a = articles.length
 
-        articles.each do |article|
-      		ArticleHasBuyorder.create(article_id:article,buyorder_id:@compra.id)
-  				article.comprar!
-          article.update(ultimoped:a.article_has_buyorder.last.id)
+        a.times do |count|
+      		ArticleHasBuyorder.create(article_id:articles[count],buyorder_id:@compra.id,state:"generada",cantidad:cantidad[count])
+  				article = Article.find(articles[count])
+          article.comprar!
+          article.update(ultimoped:article.article_has_buyorder.last.id)
           
-
         end
         
 
 
-  			format.html { redirect_to @compra, notice: 'La compra se creó correctamente, lo artículos deberían estar en estado "pedido".' }
+  			format.html { redirect_to @compra, notice: 'La compra se creó correctamente, los artículos deberían estar en estado "pedido".' }
         format.json { render :show, status: :created, location: @compra }
       else
         format.html { render :new }

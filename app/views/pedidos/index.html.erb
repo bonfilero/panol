@@ -38,8 +38,55 @@
 				</td>
 				
 			</tr>
+		<%  end    %>
 	
 	
 	</tbody>
+</table>
+
+<% if @ordenes_abiertas.length > 0 %>
+	<table>
+		<thead>
+			<tr>
+				<td>Id Orden</td>
+				<td>Fecha de orden</td>
+				<td>Artículo</td>
+				<td>Descripción</td>
+				<td>Cantidad</td>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<% @ordenes_abiertas.each do |orden| %>
+				<tr>
+					<td><%= orden.id %></td>
+					<td><%= orden.created_at %></td>
+					<td><%= orden.article.nombre %></td>
+					<td>
+						<% if orden.article.desc.present? %>
+							<%= orden.article.desc %>
+						<% end %>
+					</td>
+					<td><%= orden.cantidad %></td>
+					
+
+
+				</tr>
+			<% end %>
+
+		</tbody>
+	</table>
+
+
+
+<% else %>
+<div>Sin pedidos pendientes</div>
+<% end %>
+
 	
-<%  end    %>
+
+
+
+
+	

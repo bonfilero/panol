@@ -21,6 +21,7 @@ class InputsController < ApplicationController
   def new
     @input = Input.new
     @article = Article.find(params[:article_id])
+    @ordenes = @article.article_has_buyorder.generada
   end
 
   # GET /inputs/1/edit
