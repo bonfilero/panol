@@ -10,23 +10,33 @@ class ComprasController < ApplicationController
   def new
   	@compra = Buyorder.new
 
-  	@faltantes = Article.faltante 
-
+  	@faltantes = Article.faltante
+=begin
+    @ordenes = []
+    @faltantes.each do |orden|
+      a = ArticleHasBuyorder.new
+      @ordenes << a
+    end
+=end
   end
+  
   def create
-  	@compra = Buyorder.new
+    #raise
+    @compra = Buyorder.new
 
   	respond_to do |format|
   		if @compra.save
 
-  			ids = params[:acomprar]
+        articles = params[:articulos]
 
-  			ids.each do |article|
-  				ArticleHasBuyorder.create(article_id:article,buyorder_id:@compra.id)
-  				a=Article.find(article)
-          a.comprar!
-          a.update(ultimoped:a.article_has_buyorder.last.id)
-  			end
+        articles.each do |article|
+      		ArticleHasBuyorder.create(article_id:article,buyorder_id:@compra.id)
+  				article.comprar!
+          article.update(ultimoped:a.article_has_buyorder.last.id)
+          
+
+        end
+        
 
 
   			format.html { redirect_to @compra, notice: 'La compra se creó correctamente, lo artículos deberían estar en estado "pedido".' }

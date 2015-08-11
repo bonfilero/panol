@@ -15,15 +15,23 @@
   <div class="field">
     <% @faltantes.each do |articulo| %>
       <div>
-        <%= check_box_tag "acomprar[]", articulo.id, checked = true %>
-        <% if articulo.desc.present? %>
-          <%= articulo.nombre %> - <%= articulo.desc %>
-        <% else %>
-          <%= articulo.nombre %>
-        <% end %>
+        <col>
+          <%= check_box_tag "acomprar[]", articulo.id, checked = true %>
+          <% if articulo.desc.present? %>
+            <%= articulo.nombre %> - <%= articulo.desc %>
+          <% else %>
+            <%= articulo.nombre %>
+          <% end %>
+        </col>
+        <col>  --  </col>
+        <col>
+          Cantidad a comprar
+          <%= check_box_tag "variable[]", articulo.nombre %>
+        </col>
       </div>
     <% end %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
