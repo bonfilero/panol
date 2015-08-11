@@ -35,6 +35,7 @@ class InputsController < ApplicationController
   
 
   def create
+    raise
     @article = Article.find(params[:article_id])
 
     @input = @article.inputs.new(input_params)
