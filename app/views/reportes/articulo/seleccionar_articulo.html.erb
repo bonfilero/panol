@@ -1,9 +1,12 @@
 <h2>Seleccionar artículo</h2>
 
-<div class="field">
-	<label>Artículos</label><br>
-    <%= select_tag "orden_compra[]", options_for_select(@articles.collect{ |u| [ u.nombre, u.id]}) , {include_blank: true, multiple: true} %>
-</div>
-<div class="actions">
-	<%= submit_tag "Consultar" %>
-</div>
+<%= form_tag('/articulo') do %>
+	<div class="field">
+		<label>Artículos</label><br>
+	    <%= select_tag "articulo", options_for_select(@articles.collect{ |u| [ u.nombre, u.id]}) , {include_blank: true, multiple: false} %>
+	</div>
+	<div class="actions">
+		<%= submit_tag( "Consultar", parametro: 1) %>
+	</div>
+<% end -%>
+

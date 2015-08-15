@@ -4,9 +4,19 @@ Rails.application.routes.draw do
   post 'compras/new', to: 'compras#create'
 
   get 'reportes/operario', to: 'reportes#por_operario'
+  
+
   get 'reportes/equipo', to: 'reportes#por_equipo'
+  post 'equipo', to: 'reportes#cons_equipo'
+  
+
   get 'reportes/articulo', to: 'reportes#por_articulo'
+  post '/articulo', to: 'reportes#cons_articulo'
+  
+
+
   get 'reportes', to: 'reportes#index'
+
 
 
 
