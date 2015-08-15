@@ -5,8 +5,12 @@ class ReportesController < ApplicationController
 	end
 	def por_articulo
 		@articles = Article.all
-		
+		render "reportes/articulo/seleccionar_articulo"
 	end
+
+
+
+	
 	def index
 	end
 end
