@@ -1,0 +1,12 @@
+<h2>Seleccionar equipo</h2>
+
+<%= form_tag('/equipo') do %>
+	<div class="field">
+		<label>Artículos</label><br>
+	    <%= select_tag "equipo", options_for_select(@equipment.collect{ |u| [ u.nombre, u.id]}) , {include_blank: true, multiple: false} %>
+	</div>
+	<div class="actions">
+		<%= submit_tag( "Consultar", parametro: 1) %>
+	</div>
+<% end -%>
+
